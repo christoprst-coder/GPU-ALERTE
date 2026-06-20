@@ -23,7 +23,11 @@ async def check_ldlc():
 
                 html = await response.text()
 
-                print("HTML LDLC récupéré avec succès")
+                from bs4 import BeautifulSoup
+
+soup = BeautifulSoup(html, "lxml")
+
+print("Titre page :", soup.title.text if soup.title else "Aucun titre")
 
         print("Page LDLC récupérée:", len(html))
 
