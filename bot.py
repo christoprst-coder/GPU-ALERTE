@@ -9,8 +9,6 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 
-already_sent = set()
-
 async def check_ldlc():
 try:
 url = "https://www.ldlc.com/recherche/rtx+5080/"
@@ -49,9 +47,6 @@ if not check_prices.is_running():
 @tasks.loop(minutes=CHECK_INTERVAL)
 async def check_prices():
 print("🔍 Vérification des prix...")
-
-```
 await check_ldlc()
-```
 
 client.run(TOKEN)
