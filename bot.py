@@ -1,6 +1,8 @@
 import discord
 import os
 from discord.ext import tasks
+import aiohttp
+from bs4 import BeautifulSoup
 from config import CHANNEL_ID, CHECK_INTERVAL
 
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -33,5 +35,16 @@ async def check_prices():
     # Ici nous ajouterons les scrapers plus tard
     # Exemple :
     # await channel.send("Test vérification")
+async def check_ldlc():
+    url = "https://www.ldlc.com/recherche/rtx+5080/"
 
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+            url,
+            headers={"User-Agent": "Mozilla/5.0"}
+        ) as response:
+
+            html = await response.text()
+
+    print("Page LDLC récupérée :", len(html))
 client.run(TOKEN)
