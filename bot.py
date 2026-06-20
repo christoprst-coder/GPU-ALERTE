@@ -10,10 +10,9 @@ intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 
 async def check_ldlc():
-try:
-url = "https://www.ldlc.com/recherche/rtx+5080/"
+    try:
+        url = "https://www.ldlc.com/recherche/rtx+5080/"
 
-```
     async with aiohttp.ClientSession() as session:
         async with session.get(
             url,
@@ -30,13 +29,11 @@ url = "https://www.ldlc.com/recherche/rtx+5080/"
 
 except Exception as e:
     print("Erreur LDLC:", str(e))
-```
 
 @client.event
 async def on_ready():
 print(f"Connecté en tant que {client.user}")
 
-```
 channel = client.get_channel(CHANNEL_ID)
 
 if channel:
@@ -44,7 +41,6 @@ if channel:
 
 if not check_prices.is_running():
     check_prices.start()
-```
 
 @tasks.loop(minutes=CHECK_INTERVAL)
 async def check_prices():
