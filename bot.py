@@ -1,11 +1,8 @@
 import discord
 import os
 import aiohttp
-from bs4 import BeautifulSoup
 from discord.ext import tasks
 from config import CHANNEL_ID, CHECK_INTERVAL
-
-print("VERSION TEST 123")
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
@@ -13,8 +10,8 @@ intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 
 async def check_ldlc():
-try:
-url = "https://www.ldlc.com/recherche/rtx+5080/"
+    try:
+        url = "https://www.ldlc.com/recherche/rtx+5080/"
 
 ```
     async with aiohttp.ClientSession() as session:
@@ -27,24 +24,9 @@ url = "https://www.ldlc.com/recherche/rtx+5080/"
 
             html = await response.text()
 
-    soup = BeautifulSoup(html, "html.parser")
+            print(html[:1000])
 
-    price_div = soup.find(attrs={"data-price": True})
-
-    if price_div:
-        price = float(price_div["data-price"])
-
-        print("Prix trouvé :", price)
-
-        if price <= 1000:
-            channel = client.get_channel(CHANNEL_ID)
-
-            if channel:
-                await channel.send(
-                    f"🚨 RTX 5080 trouvée sous 1000€ !\nPrix : {price} €"
-                )
-    else:
-        print("Prix non trouvé")
+    print("Page LDLC récupérée:", len(html))
 
 except Exception as e:
     print("Erreur LDLC:", str(e))
