@@ -20,19 +20,19 @@ url = "https://www.ldlc.com/recherche/rtx+5080/"
             headers={"User-Agent": "Mozilla/5.0"}
         ) as response:
 
-            print("Status LDLC :", response.status)
+            print("Status LDLC:", response.status)
 
             html = await response.text()
 
-    print("Page LDLC récupérée :", len(html))
+    print("Page LDLC récupérée:", len(html))
 
 except Exception as e:
-    print("Erreur LDLC :", str(e))
+    print("Erreur LDLC:", str(e))
 ```
 
 @client.event
 async def on_ready():
-print(f"✅ Connecté en tant que {client.user}")
+print(f"Connecté en tant que {client.user}")
 
 ```
 channel = client.get_channel(CHANNEL_ID)
