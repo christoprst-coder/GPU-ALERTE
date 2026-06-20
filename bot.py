@@ -10,7 +10,7 @@ intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 
 async def check_ldlc():
-try:
+    try:
 url = "https://www.ldlc.com/recherche/rtx+5080/"
 
 ```
