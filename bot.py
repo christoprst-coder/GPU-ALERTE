@@ -23,7 +23,7 @@ async def check_ldlc():
 
                 html = await response.text()
 
-                print(html[:1000])
+                print("HTML LDLC récupéré avec succès")
 
         print("Page LDLC récupérée:", len(html))
 
