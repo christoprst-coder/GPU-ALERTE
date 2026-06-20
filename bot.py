@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 from discord.ext import tasks
 from config import CHANNEL_ID, CHECK_INTERVAL
 
+print("VERSION TEST 123")
+
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
