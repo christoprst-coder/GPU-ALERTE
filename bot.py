@@ -1,6 +1,7 @@
 import discord
 import os
 import aiohttp
+from bs4 import BeautifulSoup
 from discord.ext import tasks
 from config import CHANNEL_ID, CHECK_INTERVAL
 
@@ -37,19 +38,19 @@ except Exception as e:
 
 @client.event
 async def on_ready():
-    print(f"Connecté en tant que {client.user}")
+print(f"Connecté en tant que {client.user}")
 
-    channel = client.get_channel(CHANNEL_ID)
+channel = client.get_channel(CHANNEL_ID)
 
-    if channel:
-        await channel.send("🚀 Surveillance GPU démarrée")
+if channel:
+    await channel.send("🚀 Surveillance GPU démarrée")
 
-    if not check_prices.is_running():
-        check_prices.start()
+if not check_prices.is_running():
+    check_prices.start()
 
 @tasks.loop(minutes=CHECK_INTERVAL)
 async def check_prices():
-    print("🔍 Vérification des prix...")
-    await check_ldlc()
+print("🔍 Vérification des prix...")
+await check_ldlc()
 
 client.run(TOKEN)
