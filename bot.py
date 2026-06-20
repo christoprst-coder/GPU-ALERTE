@@ -10,8 +10,8 @@ intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 
 async def check_ldlc():
-try:
-url = "https://www.ldlc.com/recherche/rtx+5080/"
+    try:
+        url = "https://www.ldlc.com/recherche/rtx+5080/"
 
     async with aiohttp.ClientSession() as session:
         async with session.get(
